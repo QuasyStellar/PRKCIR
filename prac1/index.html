@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическая работа 1</title>
+    <!-- Фавиконка -->
+    <link rel="icon" href="favicon/favicon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Заголовок уровня h1 -->
+    <h1 id="main-heading">Введение в блокчейн-технологии</h1>
+
+    <!-- Первый раздел -->
+    <section>
+        <h2 id="section1">Что такое блокчейн?</h2>
+        <p>
+            Блокчейн — это <strong>распределённая</strong> база данных или <b>реестр</b>,
+            в котором записи <em>объединены</em> в <u>цепочку</u>, состоящую из блоков.
+            Подробнее можно узнать на сайте
+            <a href="https://blockchain.com" target="_blank">Blockchain.com</a>.
+        </p>
+        <p>
+            Основные свойства технологии включают:
+            <i>безопасность</i>, <cite>прозрачность</cite> и
+            <abbr title="Децентрализованная автономная организация">DAO</abbr>.
+        </p>
+        <blockquote cite="https://blockchain.com">
+            «Блокчейн — это технология, которая изменит будущее».
+        </blockquote>
+    </section>
+
+    <!-- Второй раздел -->
+    <section>
+        <h2 id="section2">Основные понятия</h2>
+        <ul>
+            <li>Блок</li>
+            <li>Транзакция</li>
+            <li>Криптография</li>
+            <li>Валидаторы</li>
+        </ul>
+        <ol type="I" start="5">
+            <li>Скорость</li>
+            <li>Децентрализация</li>
+        </ol>
+        <dl>
+            <dt>Криптография</dt>
+            <dd>Способ защиты данных.</dd>
+            <dd>Пример: SHA256.</dd>
+            <dt>Транзакция</dt>
+            <dd>Запись в блокчейне о переводе средств.</dd>
+        </dl>
+    </section>
+
+    <!-- Изображения -->
+    <section>
+        <h2>Визуализация блокчейна</h2>
+        <p>Пример блокчейн-схемы:</p>
+        <a href="https://blockchain.com" target="_blank">
+            <img src="images/blockchain-diagram.png" alt="Схема блокчейна" width="300" height="200">
+        </a>
+        <p>Карта блокчейна:</p>
+        <img src="images/blockchain-map.png" usemap="#blockchain-map" alt="Карта блокчейна" width="500">
+        <map name="blockchain-map">
+            <area shape="circle" coords="150,150,75" href="#section1" alt="Что такое блокчейн">
+            <area shape="rect" coords="200,200,300,300" href="#section2" alt="Основные понятия">
+            <area shape="poly" coords="400,200,450,250,400,300" href="#main-heading" alt="Введение">
+        </map>
+    </section>
+
+    <!-- Контакты -->
+    <footer>
+        <p>Свяжитесь с нами:</p>
+        <p>Телефон: <a href="tel:+1234567890">+1 234 567 890</a></p>
+        <p>Email: <a href="mailto:info@blockchain.com">info@blockchain.com</a></p>
+    </footer>
+</body>
+
+</html>

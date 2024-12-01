@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическая работа 2</title>
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключение шрифтов Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Фавиконка -->
+    <link rel="icon" href="favicon/favicon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип сайта">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#section1">Главная</a></li>
+                <li><a href="#section2">О проекте</a></li>
+                <li><a href="#footer">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Уникальный контент -->
+    <main>
+        <!-- Секция 1 -->
+        <section id="section1">
+            <h1>Введение в блокчейн-технологии</h1>
+            <p>
+                Блокчейн — это <strong>распределённая</strong> база данных или <b>реестр</b>,
+                в котором записи <em>объединены</em> в <u>цепочку</u>, состоящую из блоков.
+            </p>
+            <code>
+                Структура блока в блокчейне:
+                {
+                "index": 1,
+                "timestamp": "2024-11-24T12:00:00",
+                "data": "Пример транзакции",
+                "previousHash": "0x12345abcd",
+                "hash": "0x67890efgh"
+                }
+            </code>
+            <p>Пример схемы блокчейна:</p>
+            <a href="https://example.com">
+                <img src="images/blockchain-diagram.png" alt="Схема блокчейна" width="300" height="200">
+            </a>
+        </section>
+
+        <!-- Секция 2 -->
+        <section id="section2">
+            <h2>Основные понятия</h2>
+            <article>
+                <h3>Что такое блокчейн?</h3>
+                <p>
+                    Блокчейн представляет собой технологию хранения данных, которая обеспечивает
+                    <b>безопасность</b> и <strong>прозрачность</strong> записей.
+                </p>
+            </article>
+            <aside>
+                <h4>Дополнительная информация</h4>
+                <p>Пример использования: криптовалюты, логистика, здравоохранение.</p>
+            </aside>
+            <p>Карта блокчейна с областями:</p>
+            <img src="images/blockchain-map.png" usemap="#blockchain-map" alt="Карта блокчейна" width="500">
+            <map name="blockchain-map">
+                <area shape="circle" coords="150,150,75" href="#section1" alt="Что такое блокчейн">
+                <area shape="rect" coords="200,200,300,300" href="#section2" alt="Основные понятия">
+                <area shape="poly" coords="400,200,450,250,400,300" href="#footer" alt="Контакты">
+            </map>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer id="footer">
+        <address>
+            Разработчик: Журавлев Иван<br>
+            Email: <a href="mailto:zhuravlev.i.y@edu.mirea.ru">zhuravlev.i.y@edu.mirea.ru</a>
+        </address>
+        <p>&copy; 2024 Ничего не защищено</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+/* Базовые стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Шапка сайта */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin-left: 20px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #FFD700;
+}
+
+.menu a:active {
+    color: #FF4500;
+}
+
+.menu a:visited {
+    color: #FFA07A;
+}
+
+/* Основной контент */
+main {
+    padding: 20px;
+}
+
+/* Секции */
+section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+aside {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-left: 4px solid #333;
+}
+
+/* Подвал */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+footer a {
+    color: #FFD700;
+    text-decoration: none;
+}
