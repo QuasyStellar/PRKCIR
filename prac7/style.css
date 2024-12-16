@@ -1,0 +1,310 @@
+/* Основные переменные */
+:root {
+    --card-width: 250px;
+    --card-height: 350px;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-border-radius: 20px;
+    --gradient: linear-gradient(45deg, rgba(255, 0, 255, 0.5), rgba(0, 255, 255, 0.5));
+    --border-color: rgba(255, 255, 255, 0.3);
+    --card-text-color: white;
+    /* Цвет текста на карточке */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://uhdwallpapers.org/uploads/converted/21/06/11/macos-monterey-2880x1800_897687-mm-90.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 50px;
+}
+
+/* Элементы карточки */
+.card-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card::before,
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.card:hover::before,
+.card:hover::after {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: rotate(0deg);
+    filter: brightness(1.2);
+}
+
+.card .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--card-text-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    /* Чтобы текст был читаемым */
+}
+
+/* Анимация для движения */
+@keyframes hoverAnimation {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-10px, -10px);
+    }
+
+    50% {
+        transform: translate(10px, -10px);
+    }
+
+    75% {
+        transform: translate(10px, 10px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes hoverNeon {
+    from {
+        text-shadow: 0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 30px #fff,
+            0 0 40px #FF9900,
+            0 0 70px #FF9900,
+            0 0 80px #FF9900,
+            0 0 100px #FF9900,
+            0 0 150px #FF9900;
+    }
+
+    to {
+        text-shadow: 0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 15px #fff,
+            0 0 20px #FF9900,
+            0 0 35px #FF9900,
+            0 0 40px #FF9900,
+            0 0 50px #FF9900,
+            0 0 75px #FF9900;
+    }
+}
+
+
+
+
+
+.card:hover .content {
+    animation: hoverAnimation 1s ease-in-out infinite;
+}
+
+/* Социальные кнопки */
+.social-btn {
+    position: relative;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 10px;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.social-btn:hover::before {
+    opacity: 1;
+}
+
+.social-btn:hover {
+    color: #000;
+}
+
+@media (max-width: 600px) {
+    .social-btn {
+        font-size: 0.8rem;
+    }
+}
+
+/* Форма регистрации */
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+input:focus {
+    outline: none;
+    transform: scale(1.05);
+}
+
+button {
+    padding: 15px;
+    background-color: #00f;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@keyframes inputAnimation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(10px * (random() - 0.5)));
+    }
+}
+
+.input:hover {
+    animation: inputAnimation 0.5s ease infinite;
+}
+
+/* Flexbox карточки */
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.flex-card {
+    width: 30%;
+    padding: 20px;
+    background-color: #ccc;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.flex-card:hover {
+    transform: translateY(-10px);
+    filter: brightness(1.2);
+}
+
+/* Карточки с лучами */
+.light-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.light-card::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.light-card:hover::before {
+    opacity: 1;
+}
+
+.light-card:hover {
+    transform: scale(1.05);
+}
+
+/* Блюр на фоне при наведении */
+.card-container:hover .card:not(:hover) {
+    backdrop-filter: blur(5px);
+    /* Добавляем блюр на остальные карточки */
+    filter: brightness(0.8);
+    /* Уменьшаем яркость на других карточках */
+}
+
+/* Лучи на карточке */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0) 80%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
