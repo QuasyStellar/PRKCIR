@@ -1,0 +1,211 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Задание 1: Кнопки */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.animated-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #5b8bf7;
+    color: white;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.animated-button:hover {
+    transform: scale(1.1);
+    background-color: #3e6ad7;
+}
+
+/* Задание 2: Уведомления, превращающиеся в меню с анимацией */
+.notification-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.notification-icon {
+    position: relative;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    /* Плавное изменение размера при наведении */
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.notification-dropdown {
+    z-index: 999;
+    position: absolute;
+    /* Сдвиг вниз, чтобы меню не перекрывало иконку */
+    width: 250px;
+    height: 0;
+    /* Начальная высота меню */
+    overflow: hidden;
+    transition: height 0.5s ease-out;
+    /* Анимация высоты меню */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notification-container:hover .notification-dropdown {
+    height: 200px;
+    /* Высота меню при наведении */
+}
+
+.notification-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-menu li {
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #ddd;
+}
+
+.notification-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Увеличение иконки при наведении */
+.notification-container:hover .notification-icon {
+    transform: scale(1.1);
+}
+
+/* Задание 3: Карточки */
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Выровнять карточки по верхнему краю */
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.card {
+    position: relative;
+    width: 200px;
+    /* Задаём фиксированную ширину карточки */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.card img {
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Описание занимает всю ширину карточки */
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+/* Задание 4: Видео контейнер */
+.video-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Обрезаем излишки */
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Ширина описания равна ширине видео */
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.video-container:hover .video-overlay {
+    opacity: 1;
+}
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-container {
+        width: 95%;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
