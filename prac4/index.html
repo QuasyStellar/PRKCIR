@@ -4,52 +4,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Практическая работа Flexbox</title>
+    <title>Практическая работа: Форма, Карта, Видео</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <img src="favicon/favicon.png" alt="Логотип">
-
-        </div>
-        <label class="burger-menu" for="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <input type="checkbox" id="menu-toggle" style="display: none;">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contacts</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main>
-        <section class="layout desktop-layout">
-            <div>A</div>
-            <div>B</div>
-            <div>C</div>
-            <div>D</div>
-            <div>E</div>
-        </section>
+        <!-- Форма -->
+        <form method="POST">
+            <fieldset>
+                <legend>Персональная информация</legend>
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
 
-        <section class="mobile-layout">
-            <div>Logo</div>
-            <div>Contents</div>
-        </section>
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Введите ваш номер телефона"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
 
-        <section class="gallery">
-            <img src="https://via.placeholder.com/150" alt="Gallery Image 1">
-            <img src="https://via.placeholder.com/150" alt="Gallery Image 2">
-            <img src="https://via.placeholder.com/150" alt="Gallery Image 3">
-            <img src="https://via.placeholder.com/150" alt="Gallery Image 4">
-        </section>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Дополнительная информация</legend>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль" minlength="8"
+                    required>
+
+                <label for="file">Загрузить файл:</label>
+                <input type="file" id="file" name="file">
+
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Введите сообщение" maxlength="200"
+                    required></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Выбор</legend>
+                <label class="inline">
+                    <input type="checkbox" name="subscribe" checked>
+                    Подписаться на новости
+                </label>
+
+                <label>Ваш пол:</label>
+                <label class="inline">
+                    <input type="radio" name="gender" value="male" required>
+                    Мужской
+                </label>
+                <label class="inline">
+                    <input type="radio" name="gender" value="female" required>
+                    Женский
+                </label>
+
+                <label for="select">Выберите страну:</label>
+                <select id="select" name="country" required>
+                    <option value="" disabled selected>Выберите страну</option>
+                    <option value="ru">Россия</option>
+                    <option value="us">США</option>
+                    <option value="de">Германия</option>
+                </select>
+            </fieldset>
+
+            <button type="submit">Отправить</button>
+        </form>
+
+        <!-- Карта -->
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093705!2d144.95373631531672!3d-37.81627977975192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5777c6f20e0e0e6!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1632820458476!5m2!1sen!2sau"></iframe>
+
+        <!-- Видео -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
     </main>
 </body>
 
