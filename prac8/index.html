@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная сетка</title>
+    <style>
+        :root {
+            --grid-columns: 1fr 1fr 1fr;
+            --transition-time: 0.3s;
+            --bg-color: #f0f0f0;
+            --hover-scale: 1.1;
+            --padding: 10px;
+            --gap: 15px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: var(--grid-columns);
+            gap: var(--gap);
+            padding: var(--padding);
+        }
+
+        .block {
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .block:hover {
+            transform: scale(var(--hover-scale));
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .block p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Размещение блоков */
+        .block:nth-child(1) {
+            grid-column: span 2;
+        }
+
+        .block:nth-child(2) {
+            grid-column: span 1;
+        }
+
+        .block:nth-child(3) {
+            grid-column: span 1;
+        }
+
+        .block:nth-child(4) {
+            grid-column: span 2;
+        }
+
+        .block:nth-child(5) {
+            grid-column: span 1;
+        }
+
+        .block:nth-child(6) {
+            grid-column: span 1;
+        }
+
+        .block:nth-child(7) {
+            grid-column: span 2;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            :root {
+                --grid-columns: 1fr 1fr;
+            }
+
+            .block:nth-child(1),
+            .block:nth-child(4),
+            .block:nth-child(7) {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --grid-columns: 1fr;
+            }
+
+            .block:nth-child(1),
+            .block:nth-child(4),
+            .block:nth-child(7) {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 1">
+            <p>Блок 1. Пример текста и изображения, занимает две ячейки.</p>
+        </div>
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 2">
+            <p>Блок 2. Пример текста и изображения.</p>
+        </div>
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 3">
+            <p>Блок 3. Пример текста и изображения.</p>
+        </div>
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 4">
+            <p>Блок 4. Пример текста и изображения, занимает две ячейки.</p>
+        </div>
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 5">
+            <p>Блок 5. Пример текста и изображения.</p>
+        </div>
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 6">
+            <p>Блок 6. Пример текста и изображения.</p>
+        </div>
+        <div class="block">
+            <img src="https://via.placeholder.com/150" alt="Изображение 7">
+            <p>Блок 7. Пример текста и изображения, занимает две ячейки.</p>
+        </div>
+    </div>
+</body>
+
+</html>
