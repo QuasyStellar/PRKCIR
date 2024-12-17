@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическое задание</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .like-btn {
+            background-color: grey;
+        }
+
+        .like-btn.liked {
+            background-color: red;
+        }
+
+        .draw-btn {
+            background-color: blue;
+            margin-bottom: 10px;
+        }
+
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Практическое задание</h1>
+
+    <!-- Задание 1 -->
+    <section>
+        <h2>1. Регистрация</h2>
+        <button id="registerBtn">Проверить регистрацию</button>
+    </section>
+
+    <!-- Задание 2 -->
+    <section>
+        <h2>2. Вход в панель управления</h2>
+        <button id="loginBtn">Войти</button>
+    </section>
+
+    <!-- Задание 3 -->
+    <section>
+        <h2>3. Кнопка «Нравится»</h2>
+        <button id="likeBtn" class="like-btn">Нравится</button>
+    </section>
+
+    <!-- Задание 4 -->
+    <section>
+        <h2>4. Рисование за курсором</h2>
+        <button id="drawBtn" class="draw-btn">Рисовать</button>
+    </section>
+
+    <script>
+        // Задание 1: Регистрация
+        document.getElementById("registerBtn").addEventListener("click", () => {
+            if (confirm("Желаете пройти регистрацию на сайте?")) {
+                alert("Круто!");
+            } else {
+                alert("Попробуй ещё раз");
+            }
+        });
+
+        // Задание 2: Вход в панель управления
+        document.getElementById("loginBtn").addEventListener("click", () => {
+            const login = prompt("Введите логин:");
+
+            if (login === "Админ") {
+                const password = prompt("Введите пароль:");
+
+                if (password === "Я главный") {
+                    alert("Здравствуйте!");
+                } else if (password === null || password === "") {
+                    alert("Отменено");
+                } else {
+                    alert("Неверный пароль");
+                }
+            } else if (login === null || login === "") {
+                alert("Отменено");
+            } else {
+                alert("Я вас не знаю");
+            }
+        });
+
+        // Задание 3: Кнопка «Нравится»
+        document.getElementById("likeBtn").addEventListener("click", function () {
+            this.classList.toggle("liked");
+        });
+
+        // Задание 4: Рисование за курсором
+        let isDrawing = false;
+        const drawBtn = document.getElementById("drawBtn");
+        const body = document.body;
+
+        drawBtn.addEventListener("click", () => {
+            isDrawing = !isDrawing;
+            drawBtn.textContent = isDrawing ? "Прекратить рисовать" : "Рисовать";
+        });
+
+        body.addEventListener("mousemove", (event) => {
+            if (isDrawing) {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                dot.style.left = `${event.pageX}px`;
+                dot.style.top = `${event.pageY}px`;
+                body.appendChild(dot);
+
+                // Удаляем точки через 2 секунды
+                setTimeout(() => dot.remove(), 2000);
+            }
+        });
+    </script>
+</body>
+
+</html>
