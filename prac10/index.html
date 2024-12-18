@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическое задание</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+        }
+
+        button:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Практическое задание</h1>
+
+    <!-- Задание 1: Капча -->
+    <section>
+        <h2>1. Капча</h2>
+        <div id="captcha-container"></div>
+        <input type="text" id="captcha-input" placeholder="Введите капчу">
+        <button id="captcha-submit" disabled>Отправить</button>
+        <p id="captcha-message" style="color: red; display: none;">Неверный ввод, попробуйте ещё раз.</p>
+    </section>
+
+    <!-- Задание 2: Корзина -->
+    <section>
+        <h2>2. Корзина</h2>
+        <div id="cart">
+            <p>Текущая сумма: <span id="cart-value">0</span></p>
+            <button id="add-to-cart">Добавить значение</button>
+        </div>
+    </section>
+
+    <!-- Задание 3: Усечение текста -->
+    <section>
+        <h2>3. Усечение текста</h2>
+        <input type="text" id="truncate-input" placeholder="Введите текст">
+        <input type="number" id="truncate-max" placeholder="Максимальная длина" style="width: 150px;">
+        <button id="truncate-btn">Проверить</button>
+        <p id="truncate-result"></p>
+    </section>
+
+    <script>
+        // Задание 1: Капча
+        const captchaContainer = document.getElementById("captcha-container");
+        const captchaInput = document.getElementById("captcha-input");
+        const captchaSubmit = document.getElementById("captcha-submit");
+        const captchaMessage = document.getElementById("captcha-message");
+
+        function generateCaptcha() {
+            if (Math.random() > 0.5) {
+                // Генерация букв разного регистра
+                const captcha = [...Array(5)]
+                    .map(() => String.fromCharCode(Math.random() > 0.5 ? 65 + Math.floor(Math.random() * 26) : 97 + Math.floor(Math.random() * 26)))
+                    .join("");
+                captchaContainer.textContent = `Введите текст: ${captcha}`;
+                captchaSubmit.captcha = captcha;
+            } else {
+                // Генерация примера с числами
+                const num1 = Math.floor(Math.random() * 10);
+                const num2 = Math.floor(Math.random() * 10);
+                captchaContainer.textContent = `Сколько будет ${num1} + ${num2}?`;
+                captchaSubmit.captcha = num1 + num2;
+            }
+        }
+
+        function isEmpty(obj) {
+            return !obj || Object.keys(obj).length === 0;
+        }
+
+        captchaInput.addEventListener("input", () => {
+            if (!isEmpty(captchaInput.value)) {
+                captchaSubmit.disabled = false;
+            } else {
+                captchaSubmit.disabled = true;
+            }
+        });
+
+        captchaSubmit.addEventListener("click", () => {
+            if (captchaInput.value == captchaSubmit.captcha) {
+                alert("Капча пройдена!");
+                captchaInput.value = "";
+                captchaSubmit.disabled = true;
+                captchaMessage.style.display = "none";
+            } else {
+                captchaMessage.style.display = "block";
+                generateCaptcha();
+            }
+        });
+
+        generateCaptcha();
+
+        // Задание 2: Корзина
+        class Accumulator {
+            constructor(startingValue) {
+                this.value = startingValue;
+            }
+
+            read() {
+                const input = prompt("Введите число:");
+                if (!isNaN(input) && input !== null && input !== "") {
+                    this.value += +input;
+                    return this.value;
+                } else {
+                    alert("Некорректное значение!");
+                }
+            }
+        }
+
+        const cart = new Accumulator(0);
+        const cartValue = document.getElementById("cart-value");
+        const addToCart = document.getElementById("add-to-cart");
+
+        addToCart.addEventListener("click", () => {
+            const newValue = cart.read();
+            if (newValue !== undefined) {
+                cartValue.textContent = newValue;
+            }
+        });
+
+        // Задание 3: Усечение текста
+        function truncate(str, maxlength) {
+            if (str.length > maxlength) {
+                return str.slice(0, maxlength) + "…";
+            }
+            return str;
+        }
+
+        const truncateInput = document.getElementById("truncate-input");
+        const truncateMax = document.getElementById("truncate-max");
+        const truncateBtn = document.getElementById("truncate-btn");
+        const truncateResult = document.getElementById("truncate-result");
+
+        truncateBtn.addEventListener("click", () => {
+            const text = truncateInput.value;
+            const maxLength = parseInt(truncateMax.value, 10);
+
+            if (text && maxLength > 0) {
+                truncateResult.textContent = truncate(text, maxLength);
+            } else {
+                truncateResult.textContent = "Введите корректные данные!";
+            }
+        });
+    </script>
+</body>
+
+</html>

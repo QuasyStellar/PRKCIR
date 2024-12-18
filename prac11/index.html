@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина товаров</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        .cart-container,
+        .controls,
+        .filters {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        .add-item {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .clear-cart {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Корзина товаров</h1>
+
+    <div class="cart-container">
+        <h2>Ваши товары</h2>
+        <div id="cart">
+            <p>Корзина пуста</p>
+        </div>
+        <p><strong>Итоговая стоимость:</strong> <span id="total-cost">0</span> ₽</p>
+        <button class="clear-cart" id="clear-cart">Очистить корзину</button>
+    </div>
+
+    <div class="controls">
+        <h2>Добавить товар</h2>
+        <input type="text" id="item-name" placeholder="Название товара">
+        <input type="number" id="item-price" placeholder="Цена товара (₽)">
+        <button class="add-item" id="add-item">Добавить</button>
+    </div>
+
+    <div class="filters">
+        <h2>Сортировка и фильтры</h2>
+        <button id="sort-asc">Сортировать по возрастанию</button>
+        <button id="sort-desc">Сортировать по убыванию</button>
+        <br><br>
+        <input type="number" id="filter-min" placeholder="Мин. цена (₽)">
+        <input type="number" id="filter-max" placeholder="Макс. цена (₽)">
+        <button id="apply-filter">Применить фильтр</button>
+    </div>
+
+    <script>
+        // Массив товаров
+        let cart = [];
+
+        // Обновить отображение корзины
+        function updateCart() {
+            const cartElement = document.getElementById('cart');
+            const totalCostElement = document.getElementById('total-cost');
+            cartElement.innerHTML = '';
+            let totalCost = 0;
+
+            if (cart.length === 0) {
+                cartElement.innerHTML = '<p>Корзина пуста</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <span>${item.name} - ${item.price} ₽ (${item.quantity} шт.)</span>
+                        <button onclick="removeItem(${index})">Удалить</button>
+                    `;
+                    cartElement.appendChild(cartItem);
+                    totalCost += item.price * item.quantity;
+                });
+            }
+
+            totalCostElement.textContent = totalCost;
+        }
+
+        // Добавить товар
+        document.getElementById('add-item').addEventListener('click', () => {
+            const name = document.getElementById('item-name').value.trim();
+            const price = parseFloat(document.getElementById('item-price').value);
+
+            if (name && !isNaN(price) && price > 0) {
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({name, price, quantity: 1});
+                }
+                updateCart();
+            } else {
+                alert('Введите корректные данные о товаре!');
+            }
+
+            document.getElementById('item-name').value = '';
+            document.getElementById('item-price').value = '';
+        });
+
+        // Удалить товар
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        // Очистить корзину
+        document.getElementById('clear-cart').addEventListener('click', () => {
+            cart = [];
+            updateCart();
+        });
+
+        // Сортировка
+        document.getElementById('sort-asc').addEventListener('click', () => {
+            cart.sort((a, b) => a.price - b.price);
+            updateCart();
+        });
+
+        document.getElementById('sort-desc').addEventListener('click', () => {
+            cart.sort((a, b) => b.price - a.price);
+            updateCart();
+        });
+
+        // Фильтрация
+        document.getElementById('apply-filter').addEventListener('click', () => {
+            const min = parseFloat(document.getElementById('filter-min').value);
+            const max = parseFloat(document.getElementById('filter-max').value);
+
+            if (!isNaN(min) && !isNaN(max) && min <= max) {
+                const filtered = cart.filter(item => item.price >= min && item.price <= max);
+                alert(`Найденные товары: ${filtered.map(item => item.name).join(', ') || 'нет товаров в диапазоне.'}`);
+            } else {
+                alert('Введите корректные минимальное и максимальное значения!');
+            }
+        });
+
+        // Инициализация
+        updateCart();
+    </script>
+</body>
+
+</html>
